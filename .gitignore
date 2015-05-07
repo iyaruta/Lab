@@ -13,5 +13,6 @@ hs_err_pid*
 
 .idea
 *.iml
-lab_1/docs
-lab_1/build
+**/docs
+**/build
+**/lib

@@ -6,7 +6,7 @@ cd src
 echo *** Compile classes ***
 call javac -d ..\build\classes *.java
 
-echo *** Genereta javadoc classes ***
+echo *** Generete javadoc ***
 call javadoc -d ..\docs *.java
 
 echo *** Run PersonRunner ***
