@@ -15,7 +15,6 @@ call java -verbose:class PersonRunner
 cd ..\..
 
 @echo off
-echo something
 echo.
 echo Press any key to exit
 pause >nul
