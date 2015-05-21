@@ -3,8 +3,8 @@ package ua.kpi.pti.lab4;
 import java.util.Iterator;
 
 public class MyLinkedList implements Iterable<String> {
-    private Element first;
-    private Element last;
+    private Object first;
+    private Object last;
     private int size;
 
     public int size() {
@@ -12,7 +12,7 @@ public class MyLinkedList implements Iterable<String> {
     }
 
     public void add(String text) {
-        Element element = new Element();
+        Object element = new Object();
         element.setValue(text);
         if (first == null) {
             first = element;
@@ -30,14 +30,14 @@ public class MyLinkedList implements Iterable<String> {
             return;
         }
 
-        Element current = first;
+        Object current = first;
         int i = 0;
         while (i != index) {
             current = current.getNext();
             i++;
         }
-        Element next = current.getNext();
-        Element prev = current.getPrev();
+        Object next = current.getNext();
+        Object prev = current.getPrev();
 
         if (prev == null) {
             first = next;
@@ -54,7 +54,7 @@ public class MyLinkedList implements Iterable<String> {
     }
 
     public boolean contains(String arg){
-        Element current = first;
+        Object current = first;
         while (current != null){
             if (arg == current.getValue() || (arg != null && arg.equals(current.getValue()))){
                 return true;
@@ -65,7 +65,7 @@ public class MyLinkedList implements Iterable<String> {
     }
 
     public int find(String fin){
-        Element brush = first;
+        Object brush = first;
         int i = 0;
         while (brush != null){
             if (fin == brush.getValue() || (fin != null && fin.equals(brush.getValue()))){

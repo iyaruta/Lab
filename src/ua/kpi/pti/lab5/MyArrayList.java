@@ -1,8 +1,6 @@
 package ua.kpi.pti.lab5;
 
-import ua.kpi.pti.lab6.MyCollections;
-
-public class MyArrayList implements MyCollections {
+public class MyArrayList {
 
     private Object[] array;
     private int size;
