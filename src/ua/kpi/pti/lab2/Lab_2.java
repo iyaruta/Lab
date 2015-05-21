@@ -1,4 +1,4 @@
-package lab.inna;
+package ua.kpi.pti.lab2;
 
 public class Lab_2 {
 
