@@ -3,11 +3,11 @@ package ua.kpi.pti.lab4;
 import java.util.Iterator;
 
 public class LListIterator implements Iterator<String> {
-    private Object current;
 
+    private MyElement current;
 
-    public LListIterator (Object first){
-        current = new Object();
+    public LListIterator(MyElement first){
+        current = new MyElement();
         current.setNext(first);
     }
 

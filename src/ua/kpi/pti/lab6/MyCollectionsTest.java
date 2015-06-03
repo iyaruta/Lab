@@ -46,14 +46,14 @@ public class MyCollectionsTest {
     @Test
     @Ignore("not implemented yet")
     public void testCopyMyLinked() throws Exception {
-        MyLinkedList list = new MyLinkedList();
-        list.add("a");
-        list.add("b");
+        MyLinkedList src = new MyLinkedList();
+        src.add("a");
+        src.add("b");
         MyLinkedList dest = new MyLinkedList();
         dest.add("c");
         dest.add("c");
         dest.add("c");
-        MyCollections.copy(list, dest);
+        MyCollections.copy(dest, src);
         String[] expected = {"a", "b", "c"};
         int i = 0;
         for (String actual : dest) {
@@ -80,7 +80,6 @@ public class MyCollectionsTest {
     }
 
     @Test
-    @Ignore("not implemented yet")
     public void testSortMyArrayList() throws Exception {
         MyArrayList list = new MyArrayList();
         list.add("a");
@@ -109,23 +108,21 @@ public class MyCollectionsTest {
     }
 
     @Test
-    @Ignore("not implemented yet")
     public void testCopyMyArrayList() throws Exception {
-        MyArrayList list = new MyArrayList();
-        list.add("a");
-        list.add("b");
+        MyArrayList src = new MyArrayList();
+        src.add("a");
+        src.add("b");
         MyArrayList dest = new MyArrayList();
         dest.add("c");
         dest.add("c");
         dest.add("c");
-        MyCollections.copy(list, dest);
+        MyCollections.copy(dest, src);
         assertEquals("a", dest.get(0));
         assertEquals("b", dest.get(1));
         assertEquals("c", dest.get(2));
     }
 
     @Test
-    @Ignore("not implemented yet")
     public void testReverseMyArrayList() throws Exception {
         MyArrayList list = new MyArrayList();
         list.add("a");

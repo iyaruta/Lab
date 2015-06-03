@@ -3,8 +3,9 @@ package ua.kpi.pti.lab4;
 import java.util.Iterator;
 
 public class MyLinkedList implements Iterable<String> {
-    private Object first;
-    private Object last;
+
+    private MyElement first;
+    private MyElement last;
     private int size;
 
     public int size() {
@@ -12,7 +13,7 @@ public class MyLinkedList implements Iterable<String> {
     }
 
     public void add(String text) {
-        Object element = new Object();
+        MyElement element = new MyElement();
         element.setValue(text);
         if (first == null) {
             first = element;
@@ -25,19 +26,89 @@ public class MyLinkedList implements Iterable<String> {
         size++;
     }
 
+    public void addFirst(String e) {
+        MyElement element = new MyElement();
+        element.setValue(e);
+        if (first != null) {
+            first.setPrev(element);
+            element.setNext(first);
+        }
+        first = element;
+        size++;
+    }
+
+    public void addLast(String e)  {
+        MyElement element = new MyElement();
+        element.setValue(e);
+        if (last != null) {
+            last.setNext(element);
+            element.setPrev(first);
+        }
+        last = element;
+        size++;
+    }
+
+    public String getFirst() {
+        return first == null ? null : first.getValue();
+    }
+
+    public String getLast() {
+        return last == null ? null : last.getValue();
+    }
+
+    public String removeFirst() {
+        String res = null;
+        if (first != null) {
+            res = first.getValue();
+            MyElement next = first.getNext();
+            first = next;
+            if (next != null) {
+                next.setPrev(null);
+            }
+            size--;
+        }
+
+        if (size == 0) {
+            first = null;
+            last = null;
+        }
+
+        return res;
+    }
+
+    public String removeLast() {
+        String res = null;
+        if (last != null) {
+            res = last.getValue();
+            MyElement next = last.getPrev();
+            last = next;
+            if (next != null) {
+                next.setNext(null);
+            }
+            size--;
+        }
+
+        if (size == 0) {
+            first = null;
+            last = null;
+        }
+
+        return res;
+    }
+
     public void remove(int index) {
         if (first == null || index < 0 || index >= size) {
             return;
         }
 
-        Object current = first;
+        MyElement current = first;
         int i = 0;
         while (i != index) {
             current = current.getNext();
             i++;
         }
-        Object next = current.getNext();
-        Object prev = current.getPrev();
+        MyElement next = current.getNext();
+        MyElement prev = current.getPrev();
 
         if (prev == null) {
             first = next;
@@ -54,7 +125,7 @@ public class MyLinkedList implements Iterable<String> {
     }
 
     public boolean contains(String arg){
-        Object current = first;
+        MyElement current = first;
         while (current != null){
             if (arg == current.getValue() || (arg != null && arg.equals(current.getValue()))){
                 return true;
@@ -65,7 +136,7 @@ public class MyLinkedList implements Iterable<String> {
     }
 
     public int find(String fin){
-        Object brush = first;
+        MyElement brush = first;
         int i = 0;
         while (brush != null){
             if (fin == brush.getValue() || (fin != null && fin.equals(brush.getValue()))){

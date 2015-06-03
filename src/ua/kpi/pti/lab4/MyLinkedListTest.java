@@ -231,4 +231,56 @@ public class MyLinkedListTest {
         assertEquals(1, ti.size() );
     }
 
+    @Test
+    public void testAddAndGetFirst() {
+        MyLinkedList list = new MyLinkedList();
+        list.add("a");
+        list.addFirst("z");
+        assertEquals(2, list.size());
+        assertEquals("z", list.getFirst());
+    }
+
+    @Test
+    public void testAddAndGetLast() {
+        MyLinkedList list = new MyLinkedList();
+        list.add("a");
+        list.addLast("z");
+        assertEquals(2, list.size());
+        assertEquals("z", list.getLast());
+    }
+
+    @Test
+    public void testRemoveFirst() {
+        MyLinkedList list = new MyLinkedList();
+        list.add("a");
+        String first1 = list.removeFirst();
+        assertEquals("a", first1);
+        assertEquals(0, list.size());
+
+        list.add("x");
+        list.add("y");
+        String first2 = list.removeFirst();
+        assertEquals(1, list.size());
+        assertEquals("x", first2);
+        assertEquals("y", list.getFirst());
+        assertEquals("y", list.getLast());
+    }
+
+    @Test
+    public void testRemoveLast() {
+        MyLinkedList list = new MyLinkedList();
+        list.add("a");
+        String last1 = list.removeLast();
+        assertEquals("a", last1);
+        assertEquals(0, list.size());
+
+        list.add("x");
+        list.add("y");
+        String last2 = list.removeLast();
+        assertEquals("y", last2);
+        assertEquals(1, list.size());
+        assertEquals("x", list.getFirst());
+        assertEquals("x", list.getLast());
+    }
+
 }

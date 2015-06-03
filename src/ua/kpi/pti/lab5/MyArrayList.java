@@ -1,6 +1,8 @@
 package ua.kpi.pti.lab5;
 
-public class MyArrayList {
+import java.util.Iterator;
+
+public class MyArrayList implements Iterable {
 
     private Object[] array;
     private int size;
@@ -82,6 +84,11 @@ public class MyArrayList {
         return size;
     }
 
+    @Override
+    public Iterator iterator() {
+        return new MyArrayListIterator();
+    }
+
     public int capacity() {
         return array.length;
     }
@@ -107,6 +114,32 @@ public class MyArrayList {
     private void autoScale(int additional) {
         while (additional + size > array.length) {
             ensureCapacity(array.length * 2);
+        }
+    }
+
+    private class MyArrayListIterator implements Iterator {
+
+        private int index = -1;
+
+        @Override
+        public boolean hasNext() {
+            return index < size - 1;
+        }
+
+        @Override
+        public Object next() {
+            index++;
+            return array[index];
+        }
+
+        @Override
+        public void remove() {
+            if (!checkIndex(index)) {
+                throw new IllegalStateException();
+            }
+
+            MyArrayList.this.remove(index);
+            index--;
         }
     }
 

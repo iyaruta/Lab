@@ -1,10 +1,10 @@
 package ua.kpi.pti.lab4;
 
-public class Object {
+public class MyElement {
 
     private String value;
-    private Object next;
-    private Object prev;
+    private MyElement next;
+    private MyElement prev;
 
     public void setValue(String value) {
         this.value = value;
@@ -14,19 +14,19 @@ public class Object {
         return value;
     }
 
-    public void setNext(Object next) {
+    public void setNext(MyElement next) {
         this.next = next;
     }
 
-    public Object getNext() {
+    public MyElement getNext() {
         return next;
     }
 
-    public void setPrev(Object prev) {
+    public void setPrev(MyElement prev) {
         this.prev = prev;
     }
 
-    public Object getPrev() {
+    public MyElement getPrev() {
         return prev;
     }
 

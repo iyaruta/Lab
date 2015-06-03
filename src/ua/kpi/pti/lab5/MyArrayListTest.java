@@ -2,6 +2,8 @@ package ua.kpi.pti.lab5;
 
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 
 public class MyArrayListTest {
@@ -265,24 +267,59 @@ public class MyArrayListTest {
         assertEquals("c", myArrayList.get(4));
         assertEquals(6, myArrayList.capacity());
         assertEquals(5, myArrayList.size());
-
     }
 
     @Test
-        public void testAddIndexAllFirst() {
-            MyArrayList myArrayList = new MyArrayList(3);
-            myArrayList.add("a");
-            myArrayList.add("b");
-            myArrayList.add("c");
-            myArrayList.addAll(0, new Object[]{"x", "s"});
-            assertEquals("x", myArrayList.get(0));
-            assertEquals("s", myArrayList.get(1));
-            assertEquals("a", myArrayList.get(2));
-            assertEquals("b", myArrayList.get(3));
-            assertEquals("c", myArrayList.get(4));
-            assertEquals(6, myArrayList.capacity());
-            assertEquals(5, myArrayList.size());
+    public void testAddIndexAllFirst() {
+        MyArrayList myArrayList = new MyArrayList(3);
+        myArrayList.add("a");
+        myArrayList.add("b");
+        myArrayList.add("c");
+        myArrayList.addAll(0, new Object[]{"x", "s"});
+        assertEquals("x", myArrayList.get(0));
+        assertEquals("s", myArrayList.get(1));
+        assertEquals("a", myArrayList.get(2));
+        assertEquals("b", myArrayList.get(3));
+        assertEquals("c", myArrayList.get(4));
+        assertEquals(6, myArrayList.capacity());
+        assertEquals(5, myArrayList.size());
+    }
 
+    @Test
+    public void testIterator() {
+        MyArrayList myArrayList = new MyArrayList(3);
+        myArrayList.add("a");
+        myArrayList.add("b");
+        myArrayList.add("c");
+        Iterator it = myArrayList.iterator();
+        int i = 0;
+        while (it.hasNext()) {
+            Object next = it.next();
+            assertEquals(myArrayList.get(i), next);
+            i++;
         }
+    }
+
+    @Test
+    public void testIteratorRemove() {
+        MyArrayList myArrayList = new MyArrayList(3);
+        myArrayList.add("a");
+        myArrayList.add("b");
+        myArrayList.add("c");
+        Iterator it = myArrayList.iterator();
+        while (it.hasNext()) {
+            it.next();
+            it.remove();
+        }
+        assertEquals(0, myArrayList.size());
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void testIteratorRemoveException() {
+        MyArrayList myArrayList = new MyArrayList(3);
+        myArrayList.add("a");
+        Iterator it = myArrayList.iterator();
+        it.remove();
+    }
 
 }
