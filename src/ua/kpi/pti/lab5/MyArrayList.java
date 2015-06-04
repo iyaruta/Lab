@@ -1,8 +1,11 @@
 package ua.kpi.pti.lab5;
 
-import java.util.Iterator;
+import ua.kpi.pti.lab7.MyList;
 
-public class MyArrayList implements Iterable {
+import java.util.Iterator;
+import java.util.RandomAccess;
+
+public class MyArrayList implements Iterable, MyList, RandomAccess {
 
     private Object[] array;
     private int size;
@@ -87,6 +90,24 @@ public class MyArrayList implements Iterable {
     @Override
     public Iterator iterator() {
         return new MyArrayListIterator();
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        for (int i = 0; i < size; i++) {
+            Object current = array[i];
+            if (o == current || (o != null && o.equals(current))){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public Object[] toArray() {
+        Object[] res = new Object[size];
+        System.arraycopy(array, 0, res, 0, size);
+        return res;
     }
 
     public int capacity() {

@@ -1,10 +1,13 @@
 package ua.kpi.pti.lab5;
 
 import org.junit.Test;
+import ua.kpi.pti.lab4.MyLinkedList;
+import ua.kpi.pti.lab7.MyList;
 
 import java.util.Iterator;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class MyArrayListTest {
 
@@ -320,6 +323,33 @@ public class MyArrayListTest {
         myArrayList.add("a");
         Iterator it = myArrayList.iterator();
         it.remove();
+    }
+
+    @Test
+    public void testIndexOf() {
+        MyList list = new MyArrayList();
+        list.add("s");
+        list.add("f");
+        list.add("d");
+        list.add("a");
+
+        assertEquals(-1, list.indexOf("x"));
+        assertEquals(0, list.indexOf("s"));
+        assertEquals(1, list.indexOf("f"));
+        assertEquals(2, list.indexOf("d"));
+        assertEquals(3, list.indexOf("a"));
+    }
+
+    @Test
+    public void testToArray() {
+        MyList list = new MyArrayList();
+        list.add("s");
+        list.add("f");
+        list.add("d");
+        list.add("a");
+        Object[] array = list.toArray();
+        assertEquals(4, array.length);
+        assertArrayEquals(new String[]{"s", "f", "d", "a"}, array);
     }
 
 }

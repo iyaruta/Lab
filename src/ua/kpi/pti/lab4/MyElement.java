@@ -1,32 +1,32 @@
 package ua.kpi.pti.lab4;
 
-public class MyElement {
+class MyElement {
 
     private String value;
     private MyElement next;
     private MyElement prev;
 
-    public void setValue(String value) {
+    void setValue(String value) {
         this.value = value;
     }
 
-    public String getValue() {
+    String getValue() {
         return value;
     }
 
-    public void setNext(MyElement next) {
+    void setNext(MyElement next) {
         this.next = next;
     }
 
-    public MyElement getNext() {
+    MyElement getNext() {
         return next;
     }
 
-    public void setPrev(MyElement prev) {
+    void setPrev(MyElement prev) {
         this.prev = prev;
     }
 
-    public MyElement getPrev() {
+    MyElement getPrev() {
         return prev;
     }
 

@@ -1,6 +1,8 @@
 package ua.kpi.pti.lab4;
 
-public class MyStack extends MyLinkedList {
+import ua.kpi.pti.lab7.Stack;
+
+public class MyStack extends MyLinkedList implements Stack<String> {
 
     public void push(String e) {
         add(e);

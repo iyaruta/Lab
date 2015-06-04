@@ -1,8 +1,11 @@
 package ua.kpi.pti.lab4;
 
-import java.util.Iterator;
+import ua.kpi.pti.lab7.MyList;
 
-public class MyLinkedList implements Iterable<String> {
+import java.util.Iterator;
+import java.util.Queue;
+
+public class MyLinkedList implements Iterable<String>, MyList<String> {
 
     private MyElement first;
     private MyElement last;
@@ -26,26 +29,59 @@ public class MyLinkedList implements Iterable<String> {
         size++;
     }
 
+    public void add(int index, String e) {
+        if (index == size) {
+            addLast(e);
+        } else if (index == 0) {
+            addFirst(e);
+        } else {
+            MyElement existed = getByIndex(index);
+            MyElement prev = existed.getPrev();
+            MyElement newElement = new MyElement();
+            newElement.setValue(e);
+            prev.setNext(newElement);
+            newElement.setPrev(prev);
+            newElement.setNext(existed);
+            existed.setPrev(newElement);
+            size++;
+        }
+    }
+
     public void addFirst(String e) {
         MyElement element = new MyElement();
         element.setValue(e);
         if (first != null) {
             first.setPrev(element);
             element.setNext(first);
+        } else {
+            last = element;
         }
         first = element;
         size++;
     }
 
     public void addLast(String e)  {
-        MyElement element = new MyElement();
-        element.setValue(e);
-        if (last != null) {
-            last.setNext(element);
-            element.setPrev(first);
+        add(e);
+    }
+
+    @Override
+    public void addAll(String[] values) {
+        for (String s : values) {
+            add(s);
         }
-        last = element;
-        size++;
+    }
+
+    @Override
+    public void addAll(int index, String[] values) {
+        for (String s : values) {
+            add(index, s);
+            index++;
+        }
+    }
+
+    public String get(int index) {
+        MyElement current = getByIndex(index);
+        return current == null ? null : current.getValue();
     }
 
     public String getFirst() {
@@ -96,17 +132,12 @@ public class MyLinkedList implements Iterable<String> {
         return res;
     }
 
-    public void remove(int index) {
-        if (first == null || index < 0 || index >= size) {
-            return;
+    public String remove(int index) {
+        MyElement current = getByIndex(index);
+        if (current == null) {
+            return null;
         }
-
-        MyElement current = first;
-        int i = 0;
-        while (i != index) {
-            current = current.getNext();
-            i++;
-        }
+        String value = current.getValue();
         MyElement next = current.getNext();
         MyElement prev = current.getPrev();
 
@@ -122,6 +153,14 @@ public class MyLinkedList implements Iterable<String> {
             next.setPrev(prev);
         }
         size--;
+        return value;
+    }
+
+    public void set(int index, String e) {
+        MyElement element = getByIndex(index);
+        if (element != null) {
+            element.setValue(e);
+        }
     }
 
     public boolean contains(String arg){
@@ -135,14 +174,14 @@ public class MyLinkedList implements Iterable<String> {
         return false;
     }
 
-    public int find(String fin){
-        MyElement brush = first;
+    public int indexOf(String value){
+        MyElement current = first;
         int i = 0;
-        while (brush != null){
-            if (fin == brush.getValue() || (fin != null && fin.equals(brush.getValue()))){
+        while (current != null){
+            if (value == current.getValue() || (value != null && value.equals(current.getValue()))){
                 return i;
             }
-            brush = brush.getNext();
+            current = current.getNext();
             i++;
         }
         return -1;
@@ -151,6 +190,22 @@ public class MyLinkedList implements Iterable<String> {
     @Override
     public Iterator<String> iterator() {
         return new LListIterator(first);
+    }
+
+
+
+    private MyElement getByIndex(int index) {
+        if (first == null || index < 0 || index >= size) {
+            return null;
+        }
+
+        MyElement current = first;
+        int i = 0;
+        while (i != index) {
+            current = current.getNext();
+            i++;
+        }
+        return current;
     }
 
     public MyLinkedList union(MyLinkedList list){
@@ -176,4 +231,16 @@ public class MyLinkedList implements Iterable<String> {
         return intersectList;
     }
 
+    public String[] toArray() {
+        String[] array = new String[size];
+        Iterator<String> it = iterator();
+        int i = 0;
+        while (it.hasNext()) {
+            String next = it.next();
+            array[i] = next;
+            i++;
+        }
+
+        return array;
+    }
 }

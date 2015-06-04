@@ -1,16 +1,14 @@
 package ua.kpi.pti.lab6;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import ua.kpi.pti.lab4.MyLinkedList;
 import ua.kpi.pti.lab5.MyArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class MyCollectionsTest {
 
     @Test
-    @Ignore("not implemented yet")
     public void testSortMyLinked() throws Exception {
         MyLinkedList list = new MyLinkedList();
         list.add("c");
@@ -27,7 +25,6 @@ public class MyCollectionsTest {
     }
 
     @Test
-    @Ignore("not implemented yet")
     public void testSwapMyLinked() throws Exception {
         MyLinkedList list = new MyLinkedList();
         list.add("a");
@@ -44,7 +41,6 @@ public class MyCollectionsTest {
     }
 
     @Test
-    @Ignore("not implemented yet")
     public void testCopyMyLinked() throws Exception {
         MyLinkedList src = new MyLinkedList();
         src.add("a");
@@ -63,7 +59,6 @@ public class MyCollectionsTest {
     }
 
     @Test
-    @Ignore("not implemented yet")
     public void testReverseMyLinked() throws Exception {
         MyLinkedList list = new MyLinkedList();
         list.add("a");

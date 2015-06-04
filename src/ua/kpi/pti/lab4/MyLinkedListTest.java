@@ -13,15 +13,15 @@ import static org.junit.Assert.*;
 public class MyLinkedListTest {
 
     @Test
-    public void removeFromEmptyList(){
+    public void removeFromEmptyList() {
         MyLinkedList list = new MyLinkedList();
         list.remove(0);
 
-       assertEquals(0, list.size());
+        assertEquals(0, list.size());
     }
 
     @Test
-    public void removeByMinusIndex(){
+    public void removeByMinusIndex() {
         MyLinkedList list = new MyLinkedList();
         list.add("a");
         list.remove(-1);
@@ -30,7 +30,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void removeByBigIndex(){
+    public void removeByBigIndex() {
         MyLinkedList list = new MyLinkedList();
         list.add("D");
         list.add("a");
@@ -41,7 +41,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void removeFromMiddle(){
+    public void removeFromMiddle() {
         MyLinkedList list = new MyLinkedList();
         list.add("a");
         list.add("d");
@@ -54,7 +54,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void removeFirs(){
+    public void removeFirs() {
         MyLinkedList list = new MyLinkedList();
         list.add("a");
         list.add("s");
@@ -67,7 +67,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void removeLast(){
+    public void removeLast() {
         MyLinkedList list = new MyLinkedList();
         list.add("e");
         list.add("a");
@@ -78,7 +78,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void removeOne(){
+    public void removeOne() {
         MyLinkedList list = new MyLinkedList();
         list.add("e");
 
@@ -89,7 +89,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void contains(){
+    public void contains() {
         MyLinkedList list = new MyLinkedList();
         list.add("a");
         list.add("d");
@@ -104,7 +104,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void containsNot(){
+    public void containsNot() {
         MyLinkedList list = new MyLinkedList();
         list.add("a");
 
@@ -112,13 +112,13 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void containsNotImportList(){
+    public void containsNotImportList() {
         MyLinkedList list = new MyLinkedList();
         assertFalse(list.contains("a"));
     }
 
     @Test
-    public void containsNull(){
+    public void containsNull() {
         MyLinkedList list = new MyLinkedList();
         assertFalse(list.contains(null));
 
@@ -130,7 +130,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void addOne(){
+    public void addOne() {
         MyLinkedList list = new MyLinkedList();
         list.add("a");
 
@@ -138,7 +138,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void addNull(){
+    public void addNull() {
         MyLinkedList list = new MyLinkedList();
         list.add(null);
 
@@ -146,7 +146,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void addMany(){
+    public void addMany() {
         MyLinkedList list = new MyLinkedList();
         list.add("a");
         list.add("d");
@@ -157,29 +157,22 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void findOne(){
-        MyLinkedList list = new MyLinkedList();
-        list.add("a");
-        list.add("s");
-        list.add("d");
-        list.add("f");
-
-        assertEquals(1, list.find("s"));
-    }
-
-    @Test
-    public void findLust(){
+    public void testIndexOf() {
         MyLinkedList list = new MyLinkedList();
         list.add("s");
         list.add("f");
         list.add("d");
         list.add("a");
 
-        assertEquals(3, list.find("a"));
+        assertEquals(-1, list.indexOf("x"));
+        assertEquals(0, list.indexOf("s"));
+        assertEquals(1, list.indexOf("f"));
+        assertEquals(2, list.indexOf("d"));
+        assertEquals(3, list.indexOf("a"));
     }
 
     @Test
-    public void listIterator(){
+    public void listIterator() {
         MyLinkedList list = new MyLinkedList();
         list.add("a");
         list.add("s");
@@ -200,7 +193,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void unionAll(){
+    public void unionAll() {
         MyLinkedList list1 = new MyLinkedList();
         list1.add("a");
         list1.add("s");
@@ -216,7 +209,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void intersectOne(){
+    public void intersectOne() {
         MyLinkedList list1 = new MyLinkedList();
         list1.add("a");
         list1.add("s");
@@ -228,7 +221,7 @@ public class MyLinkedListTest {
         list2.add("a");
 
         MyLinkedList ti = list1.intersect(list2);
-        assertEquals(1, ti.size() );
+        assertEquals(1, ti.size());
     }
 
     @Test
@@ -281,6 +274,48 @@ public class MyLinkedListTest {
         assertEquals(1, list.size());
         assertEquals("x", list.getFirst());
         assertEquals("x", list.getLast());
+    }
+
+    @Test
+    public void testMyQueue() {
+        MyQueue myQueue = new MyQueue();
+        myQueue.add("a");
+        myQueue.add("b");
+        assertEquals("a", myQueue.peek());
+    }
+
+    @Test
+    public void testSet() {
+        MyLinkedList list = new MyLinkedList();
+        list.add("a");
+        list.add("b");
+        list.add("c");
+
+        list.set(0, "x");
+        assertEquals("x", list.getFirst());
+
+        list.set(2, "z");
+        assertEquals("z", list.getLast());
+    }
+
+    @Test
+    public void testAddByIndex() {
+        MyLinkedList list = new MyLinkedList();
+        list.add(0, "a");
+        list.add(1, "b");
+        list.add(1, "x");
+        assertEquals(3, list.size());
+        assertArrayEquals(new String[]{"a", "x", "b"}, list.toArray());
+    }
+
+    @Test
+    public void testAddAll() {
+        MyLinkedList list = new MyLinkedList();
+        list.add(0, "a");
+        list.addAll(new String[]{"x", "y"});
+        list.addAll(2, new String[]{"i", "n", "n", "a"});
+        assertEquals(7, list.size());
+        assertArrayEquals(new String[]{"a", "x", "i", "n", "n", "a", "y"}, list.toArray());
     }
 
 }
