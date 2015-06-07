@@ -130,4 +130,19 @@ public class MyCollectionsTest {
         assertEquals("b", list.get(2));
         assertEquals("a", list.get(3));
     }
+
+    @Test
+    public void testBinarySearch() throws Exception {
+        MyArrayList list = new MyArrayList();
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        list.add(40);
+        int index = MyCollections.binarySearch(list, 20);
+        assertEquals(1, index);
+
+        int missed = MyCollections.binarySearch(list, 25);
+        assertEquals(-3, missed);
+    }
+
 }
