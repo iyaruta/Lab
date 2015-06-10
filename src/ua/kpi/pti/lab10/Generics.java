@@ -4,11 +4,11 @@ import java.util.*;
 
 public class Generics {
 
-    public static <T> void fromArrayToCollection(Object[] a, Collection c) {
-        c.add(a);
+    public static <T> void fromArrayToCollection(T[] a, Collection<T> c) {
+        c.addAll(Arrays.asList(a));
     }
 
-    public static <T> void copyAll(Collection collection, Collection out) {
+    public static <T> void copyAll(Collection<? extends T> collection, Collection<T> out) {
         out.addAll(collection);
     }
 
