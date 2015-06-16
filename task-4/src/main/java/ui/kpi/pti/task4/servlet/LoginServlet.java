@@ -1,6 +1,10 @@
 package ui.kpi.pti.task4.servlet;
 
 import ui.kpi.pti.task4.data.Course;
+import ui.kpi.pti.task4.data.Student;
+import ui.kpi.pti.task4.data.Teacher;
+import ui.kpi.pti.task4.db.StudentDb;
+import ui.kpi.pti.task4.db.TeacherDb;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +20,9 @@ import java.util.Objects;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+
+    private TeacherDb teacherDb = new TeacherDb();
+    private StudentDb studentDb = new StudentDb();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,13 +43,19 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         String type = req.getParameter("type");
         if (Objects.equals(type, "teacher")) {
-            //TODO: login teacher
-
+            Teacher teacher = teacherDb.get(name);
+            if (teacher != null) {
+                HttpSession session = req.getSession();
+                session.setAttribute("type", type);
+                session.setAttribute("me", teacher);
+            }
         } else if (Objects.equals(type, "student")) {
-            //TODO: login student
-            HttpSession session = req.getSession();
-            session.setAttribute("type", type);
-            session.setAttribute("name", name);
+            Student student = studentDb.get(name);
+            if (student != null) {
+                HttpSession session = req.getSession();
+                session.setAttribute("type", type);
+                session.setAttribute("me", name);
+            }
         } else {
             throw new IllegalArgumentException("Type not supported");
         }

@@ -21,7 +21,7 @@
         <div class="col-md-4">
           <h2>Преподавайте</h2>
           <p>Лучшие программные решения для преподавателей, автоматизированная зачетка и отслеживание записи студентов.</p>
-          <p><a class="btn btn-default" href="#" role="button">Перейти »</a></p>
+          <p><a class="btn btn-default" href="/task-4/teacher" role="button">Перейти »</a></p>
        </div>
         <div class="col-md-4">
           <h2>Оценить разработку</h2>

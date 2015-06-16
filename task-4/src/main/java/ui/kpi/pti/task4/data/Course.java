@@ -14,6 +14,17 @@ public class Course {
 
     private List<Student> students;
 
+    public Course() {
+    }
+
+    public Course(Long id, String name, String description, Date start, Date end) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.start = start;
+        this.end = end;
+    }
+
     public Long getId() {
         return id;
     }

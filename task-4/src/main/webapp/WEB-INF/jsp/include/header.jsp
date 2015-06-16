@@ -38,9 +38,9 @@
                 <%--<input type="password" placeholder="Password" class="form-control">--%>
                 <%--</div>--%>
                 <c:choose>
-                    <c:when test="${not empty sessionScope.name}">
+                    <c:when test="${not empty sessionScope.me}">
                         <div class="form-group">
-                            <a href="/task-4/course" class="btn btn-success">Welcome, ${sessionScope.name}</a>
+                            <a href="/task-4/course" class="btn btn-success">Welcome, ${sessionScope.me.name}</a>
                         </div>
                     </c:when>
                     <c:otherwise>
