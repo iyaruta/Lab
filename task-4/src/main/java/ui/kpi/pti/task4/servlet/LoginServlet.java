@@ -48,18 +48,19 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("type", type);
                 session.setAttribute("me", teacher);
+                resp.sendRedirect("/task-4/teacher");
             }
         } else if (Objects.equals(type, "student")) {
             Student student = studentDb.get(name);
             if (student != null) {
                 HttpSession session = req.getSession();
                 session.setAttribute("type", type);
-                session.setAttribute("me", name);
+                session.setAttribute("me", student);
+                resp.sendRedirect("/task-4/course");
             }
         } else {
             throw new IllegalArgumentException("Type not supported");
         }
 
-        resp.sendRedirect("/task-4/course");
     }
 }

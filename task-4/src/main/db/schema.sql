@@ -44,6 +44,7 @@ alter table COURSE_TO_STUDENT
       on delete restrict on update restrict;
 
 
+INSERT INTO STUDENT(name) VALUES ('Inna Yaruta');
 INSERT INTO TEACHER(name) VALUES ('Ivan Dulin');
 INSERT INTO TEACHER(name) VALUES ('Isaak');
 INSERT INTO COURSE(name, description, start_time, end_time, teacher_id) VALUES ('Фрезировщик', 'Мастер класс от Ивана Дулина', now(), now(), 1);

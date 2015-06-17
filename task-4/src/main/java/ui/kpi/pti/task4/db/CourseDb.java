@@ -1,6 +1,7 @@
 package ui.kpi.pti.task4.db;
 
 import ui.kpi.pti.task4.data.Course;
+import ui.kpi.pti.task4.data.Teacher;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,10 +9,12 @@ import java.util.List;
 
 public class CourseDb {
 
+    public static final String SQL = "select c.*, t.name as teacher_name from Course c " +
+            "inner join Teacher t on t.id = c.teacher_id";
+
     public List<Course> findAll() {
-        String sql = "select * from Course";
         try (Connection connection = Db.connect();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(SQL)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 List<Course> result = new ArrayList<>();
                 while (resultSet.next()) {
@@ -26,7 +29,7 @@ public class CourseDb {
     }
 
     public List<Course> findByTeacher(final Long teacherId) {
-        String sql = "select * from Course where teacher_id = ?";
+        String sql = SQL + " where teacher_id = ?";
         try (Connection connection = Db.connect();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, teacherId);
@@ -50,7 +53,10 @@ public class CourseDb {
         Date start = resultSet.getDate("start_time");
         Date end = resultSet.getDate("end_time");
 
-        return new Course(id, name, description, start, end);
+        Teacher teacher = new Teacher(resultSet.getLong("teacher_id"), resultSet.getString("teacher_name"));
+        Course course = new Course(id, name, description, start, end);
+        course.setTeacher(teacher);
+        return course;
     }
 
     public void save(Course course) {
@@ -66,5 +72,20 @@ public class CourseDb {
         } catch (SQLException e) {
             throw new IllegalArgumentException("Bad");
         }
+    }
+
+    public Course get(Long id) {
+        String sql = SQL + " where c.id = ?";
+        try (Connection connection = Db.connect();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setLong(1, id);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                resultSet.next();
+                return toCourse(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new IllegalArgumentException("Bad");
+        }
+
     }
 }

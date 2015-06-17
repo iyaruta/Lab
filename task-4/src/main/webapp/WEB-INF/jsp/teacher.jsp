@@ -28,7 +28,7 @@
         <c:forEach items="${courses}" var="course" varStatus="status">
             <tr>
                 <th scope="row">${status.index + 1}</th>
-                <td>${course.name}</td>
+                <td><a href="/task-4/teacher/course?id=${course.id}">${course.name}</a></td>
                 <td>${course.description}</td>
                 <td><fmt:formatDate value="${course.start}" pattern="dd/MMM/yyyy"/></td>
                 <td><fmt:formatDate value="${course.end}" pattern="dd/MMM/yyyy"/></td>

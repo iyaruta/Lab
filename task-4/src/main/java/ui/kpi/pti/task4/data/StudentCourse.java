@@ -8,6 +8,18 @@ public class StudentCourse {
     private Score score;
     private String feedback;
 
+    private Student student;
+
+    public StudentCourse() {
+    }
+
+    public StudentCourse(Long studentId, Long courseId, Score score, String feedback) {
+        this.studentId = studentId;
+        this.courseId = courseId;
+        this.score = score;
+        this.feedback = feedback;
+    }
+
     public Long getStudentId() {
         return studentId;
     }
@@ -38,5 +50,13 @@ public class StudentCourse {
 
     public void setFeedback(String feedback) {
         this.feedback = feedback;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

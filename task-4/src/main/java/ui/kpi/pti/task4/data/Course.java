@@ -13,6 +13,7 @@ public class Course {
     private Teacher teacher;
 
     private List<Student> students;
+    private boolean available = true;
 
     public Course() {
     }
@@ -79,5 +80,13 @@ public class Course {
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }

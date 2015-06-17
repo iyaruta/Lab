@@ -22,6 +22,7 @@
                 <th>Конец</th>
                 <th>Преподаватель</th>
                 <th>Участников</th>
+                <th>&nbsp;</th>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +35,11 @@
                     <td><fmt:formatDate value="${course.end}" pattern="dd/MMM/yyyy"/></td>
                     <td>${course.teacher.name}</td>
                     <td>${fn:length(course.students)}</td>
+                    <td>
+                        <c:if test="${course.available and sessionScope.type eq 'student'}">
+                            <a href="/task-4/join?course=${course.id}">Записаться</a>
+                        </c:if>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>
