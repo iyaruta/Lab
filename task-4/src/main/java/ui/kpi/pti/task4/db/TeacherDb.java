@@ -22,4 +22,14 @@ public class TeacherDb {
         }
     }
 
+    public void save(Teacher teacher) {
+        String sql = "INSERT INTO TEACHER(name) VALUES (?)";
+        try (Connection connection = Db.connect();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, teacher.getName());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new IllegalArgumentException("Bad");
+        }
+    }
 }

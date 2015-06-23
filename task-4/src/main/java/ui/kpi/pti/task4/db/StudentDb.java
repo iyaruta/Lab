@@ -58,4 +58,14 @@ public class StudentDb {
     }
 
 
+    public void save(Student student) {
+        String sql = "INSERT INTO STUDENT(name) VALUES (?)";
+        try (Connection connection = Db.connect();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, student.getName());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new IllegalArgumentException("Bad");
+        }
+    }
 }

@@ -11,12 +11,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Objects;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/signup")
+public class SignupServlet extends HttpServlet {
 
     private TeacherDb teacherDb = new TeacherDb();
     private StudentDb studentDb = new StudentDb();
@@ -30,7 +29,7 @@ public class LoginServlet extends HttpServlet {
             throw new IllegalArgumentException("Type not supported");
         }
 
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/signup.jsp");
         requestDispatcher.forward(req, resp);
     }
 
@@ -40,24 +39,16 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         String type = req.getParameter("type");
         if (Objects.equals(type, "teacher")) {
-            Teacher teacher = teacherDb.get(name);
-            if (teacher != null) {
-                HttpSession session = req.getSession();
-                session.setAttribute("type", type);
-                session.setAttribute("me", teacher);
-                resp.sendRedirect("/task-4/teacher");
-            }
+            Teacher teacher = new Teacher(null, name);
+            teacherDb.save(teacher);
         } else if (Objects.equals(type, "student")) {
-            Student student = studentDb.get(name);
-            if (student != null) {
-                HttpSession session = req.getSession();
-                session.setAttribute("type", type);
-                session.setAttribute("me", student);
-                resp.sendRedirect("/task-4/course");
-            }
+            Student student = new Student(null, name);
+            studentDb.save(student);
         } else {
             throw new IllegalArgumentException("Type not supported");
         }
 
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login");
+        dispatcher.forward(req, resp);
     }
 }

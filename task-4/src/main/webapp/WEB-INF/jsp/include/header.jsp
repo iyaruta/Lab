@@ -41,11 +41,12 @@
                     <c:when test="${not empty sessionScope.me}">
                         <div class="form-group">
                             <a href="/task-4/course" class="btn btn-success">Welcome, ${sessionScope.me.name}</a>
+                            <a href="/task-4/logout" class="btn btn-danger">Выйти</a>
                         </div>
                     </c:when>
                     <c:otherwise>
-                        <a href="/task-4/login?type=student" class="btn btn-success">Student</a>
-                        <a href="/task-4/login?type=teacher" class="btn btn-success">Teacher</a>
+                        <a href="/task-4/login?type=student" class="btn btn-success">Студент</a>
+                        <a href="/task-4/login?type=teacher" class="btn btn-success">Викладач</a>
                     </c:otherwise>
                 </c:choose>
             </form>
