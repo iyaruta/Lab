@@ -1,7 +1,7 @@
 <flower name="Rose" xmlns="http://www.pti.kpi.ua/task3/flowers">
   <soil>PODZOLIC</soil>
   <origin>Ukraine</origin>
-  <visualParameters>string</visualParameters>
-  <growingTips>string</growingTips>
+  <visualParameters>Param-1,Param-2</visualParameters>
+  <growingTips>Tip-1,Tip-2</growingTips>
   <multiplying>LEAVES</multiplying>
 </flower>

@@ -11,13 +11,13 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class XmlParser {
+public class SaxMain {
 
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser saxParser = factory.newSAXParser();
 
-        InputStream is = XmlParser.class.getResourceAsStream("../flowers.xsd.xml");
+        InputStream is = SaxMain.class.getResourceAsStream("../flowers.xsd.xml");
         FlowerHandler handler = new FlowerHandler();
         saxParser.parse(is, handler);
 
